@@ -1,6 +1,6 @@
-# Jyoti Sinha Cinematic Portfolio
+# Muhammad Maaz Cinematic Portfolio
 
-A customized cinematic Next.js portfolio for Jyoti Sinha, focused on Control-M expertise, production support, enterprise automation, RPA, and AI-assisted support projects.
+A customized cinematic Next.js portfolio for Muhammad Maaz, focused on Control-M expertise, production support, enterprise automation, RPA, and AI-assisted support projects.
 
 ## Run locally
 
