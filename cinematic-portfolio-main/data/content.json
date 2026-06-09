@@ -1,0 +1,22 @@
+{
+  "site": {
+    "tagline": "Muhammad Maaz | Portfolio 2026"
+  },
+  "hero": {
+    "taglineHighlight": "AI-Driven Automation",
+    "freelanceNote": "Open to web development, 3D animation, AI automation, and full-stack projects.",
+    "availableLabel": "Available for projects",
+    "pills": ["React Developer", "AI Automation", "3D Web Animation", "Full-Stack"],
+    "specialistStat": { "value": "2+ Websites", "label": "Built" }
+  },
+  "interstitial": {
+    "availabilityLabel": "Availability",
+    "basedInLabel": "Based in",
+    "statLabels": ["Websites\nBuilt", "AI Models\nDeployed", "Years of\nExperience"]
+  },
+  "footer": {
+    "eyebrow": "Ready to build your next digital experience",
+    "ctaLines": ["Crafting the", "future of web"],
+    "ctaAccent": "experiences."
+  }
+}

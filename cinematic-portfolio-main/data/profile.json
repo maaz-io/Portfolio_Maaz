@@ -1,0 +1,176 @@
+{
+  "name": {
+    "first": "Muhammad",
+    "last": "Maaz",
+    "full": "Muhammad Maaz"
+  },
+  "email": "maazz.dev@gmail.com",
+  "tagline": "Crafting the future of web experiences through AI-driven automation and modern web development.",
+  "description": "Software Engineer with specialized focus on AI-driven automation and modern web development. I leverage advanced AI tools and workflows to design and build high-performance, visually immersive digital experiences.",
+  "roles": {
+    "short": "Software Engineer",
+    "detailed": "Full-Stack Developer | AI Automation Specialist | 3D Web Animation Expert"
+  },
+  "location": {
+    "based": "Rawalpindi, Pakistan",
+    "availability": "Worldwide / Remote"
+  },
+  "available": true,
+  "bio": "Software Engineer specializing in AI-driven automation and modern web development. I combine technical precision with creative execution to deliver solutions that are functionally robust and aesthetically compelling. With expertise in React, Node.js, Three.js, and AI automation, I design cutting-edge websites including fully interactive 3D animated platforms, product-focused websites optimized for engagement and conversion, and sleek professional portfolio sites. By integrating AI into the development pipeline, I ensure efficiency, scalability, and innovation in every project.",
+  "stats": [
+    { "value": "2+", "label": "Websites Built" },
+    { "value": "1", "label": "AI Model Deployed" },
+    { "value": "2026", "label": "NUST Student" }
+  ],
+  "skills": [
+    "Python",
+    "JavaScript",
+    "React.js",
+    "Node.js",
+    "Three.js",
+    "HTML5/CSS3",
+    "AI Automation",
+    "LLM Integration",
+    "RAG Systems",
+    "Prompt Engineering",
+    "UI/UX Design",
+    "REST APIs",
+    "Git/GitHub",
+    "3D Web Animation",
+    "Responsive Design",
+    "Web Performance"
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "role": "Software Engineer",
+      "company": "Self-Employed",
+      "companyShort": "FREELANCE",
+      "type": "Self-Employed",
+      "location": "Rawalpindi, Pakistan",
+      "period": "January 2026",
+      "periodEnd": "Present",
+      "bullets": [
+        "Designed and developed 2 production-grade websites with a focus on visual quality, responsiveness, and conversion-optimized UX for real-world clients.",
+        "Built and deployed a fully offline RAG-based AI model enabling intelligent, context-aware document querying without relying on cloud APIs.",
+        "Integrated AI-driven automation workflows into the development pipeline, significantly reducing iteration time and enabling scalable delivery of complex web projects."
+      ],
+      "desc": "Independent software engineer developing high-performance web experiences with AI integration and advanced animations.",
+      "tech": ["React", "Node.js", "Python", "Three.js", "AI Automation", "RAG", "Web Design", "LLM"]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "CorpWorks UK",
+      "subtitle": "Ultra-Minimal Corporate Aesthetic",
+      "type": "Client Project",
+      "link": "https://profitworks.vercel.app/",
+      "image": "/assets/Screenshot 2026-06-08 at 4.54.33 PM.png",
+      "tech": ["HTML", "CSS", "JavaScript", "Responsive", "Automation"],
+      "desc": "Ultra-minimal corporate aesthetic with powerful automated workflows, swift data processing, and top-tier operational efficiency. Built for a UK-based client."
+    },
+    {
+      "id": 2,
+      "title": "91 Dental Solutions",
+      "subtitle": "Healthcare Platform Design",
+      "type": "Client Project",
+      "link": "https://dental-website-eight-eta.vercel.app/",
+      "image": "/assets/Screenshot 2026-06-08 at 4.53.46 PM.png",
+      "tech": ["Three.js", "3D Animation", "UI/UX", "React", "Responsive"],
+      "desc": "Sleek, minimalist healthcare platform for a dental clinic. Elevated their online presence with a patient-first UI, modern branding, and high-performance front-end."
+    },
+    {
+      "id": 3,
+      "title": "Offline RAG AI",
+      "subtitle": "Python LLM Integration",
+      "type": "AI Model",
+      "link": "https://github.com/maaz-io",
+      "image": "/assets/rag.png",
+      "tech": ["Python", "RAG", "LLM", "Offline AI", "Automation"],
+      "desc": "Fully offline Retrieval-Augmented Generation system in Python. Enables intelligent document querying and context-aware answers without any cloud dependency."
+    },
+    {
+      "id": 4,
+      "title": "WebOps",
+      "subtitle": "Professional Services Platform",
+      "type": "Professional Website",
+      "link": "https://webops-theta.vercel.app/",
+      "image": "/assets/Screenshot 2026-06-08 at 4.53.18 PM.png",
+      "tech": ["React", "HTML", "CSS", "JSON", "Responsive"],
+      "desc": "My dedicated platform showcasing premium web dev and design services. Highlights expertise in high-performance, modern web applications. (Under Development)"
+    },
+    {
+      "id": 5,
+      "title": "The Travel Co",
+      "subtitle": "First Professional Project",
+      "type": "Personal Project",
+      "link": "https://travel-agent-dun.vercel.app/",
+      "image": "/assets/Screenshot 2026-06-08 at 4.54.59 PM.png",
+      "tech": ["HTML", "JavaScript", "CSS", "Responsive"],
+      "desc": "The first website I built while honing core web dev skills. Every part was personally structured, styled and coded — an important milestone that built my developer confidence."
+    },
+    {
+      "id": 6,
+      "title": "Personal Portfolio #1",
+      "subtitle": "Dark-Themed Creative Portfolio",
+      "type": "Portfolio",
+      "link": "https://maaztech.vercel.app/",
+      "image": "/assets/Screenshot 2026-06-08 at 4.52.48 PM.png",
+      "tech": ["HTML", "CSS", "JavaScript", "Animation"],
+      "desc": "A bold, dark-themed personal portfolio showcasing creative identity, projects, and software engineering skills. Features immersive typography, smooth scroll animations, and a cinematic hero section."
+    },
+    {
+      "id": 7,
+      "title": "Personal Portfolio #2",
+      "subtitle": "Modern Professional Portfolio",
+      "type": "Portfolio",
+      "link": "https://maaz-org.vercel.app/",
+      "image": "/assets/Screenshot 2026-06-08 at 4.53.02 PM.png",
+      "tech": ["HTML", "CSS", "JavaScript", "UI/UX"],
+      "desc": "An evolved portfolio iteration featuring refined UI components, advanced CSS architecture, and a professional layout optimized for client-facing presentation. Highlights AI projects and web engineering expertise."
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "title": "BS Software Engineering",
+      "platform": "NUST",
+      "year": "2026",
+      "link": "https://nust.edu.pk/",
+      "desc": "Completing a rigorous four-year program covering algorithms, software architecture, AI/ML, web systems, and project-based engineering. NUST is Pakistan's premier engineering institution consistently ranked among Asia's top universities."
+    },
+    {
+      "id": 2,
+      "title": "F.Sc (Pre-Engineering)",
+      "platform": "APSAC",
+      "year": "2025",
+      "link": "https://www.apsacrd.edu.pk/",
+      "desc": "Completed higher secondary education with a strong foundation in Mathematics, Physics, and analytical problem-solving. This phase sharpened logical thinking, technical discipline, and ability to approach complex concepts with clarity."
+    },
+    {
+      "id": 3,
+      "title": "Matriculation (Science Group)",
+      "platform": "Fazaia Inter College",
+      "year": "2023",
+      "link": "https://www.fazaia.edu.pk/",
+      "desc": "Built core academic strength through science-focused coursework and consistent performance. Developed early confidence in structured learning, practical reasoning, and disciplined study habits."
+    },
+    {
+      "id": 4,
+      "title": "Philosophy",
+      "platform": "Personal Creed",
+      "year": "2024",
+      "link": "mailto:maazz.dev@gmail.com",
+      "desc": "\"Wanna learn Things Faster, Break them Fast\" - A philosophy centered on rapid experimentation, learning through doing, and embracing productive failure as a path to innovation."
+    }
+  ],
+  "socials": [
+    { "label": "GitHub",    "href": "https://github.com/maaz-io" },
+    { "label": "LinkedIn",  "href": "https://www.linkedin.com/in/muhammadmaaz-409704377" },
+    { "label": "Instagram", "href": "https://www.instagram.com/maaz._zia?igsh=cmFtOXJmNDhiMGww&utm_source=qr" },
+    { "label": "WhatsApp",  "href": "https://wa.me/923364712888" },
+    { "label": "Email",     "href": "mailto:maazz.dev@gmail.com" },
+    { "label": "Facebook",  "href": "https://www.facebook.com/maaz.official.pk?mibextid=wwXIfr" }
+  ]
+}
