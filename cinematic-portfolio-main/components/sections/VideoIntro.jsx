@@ -175,9 +175,9 @@ export default function VideoIntro() {
         </div>
       )}
 
-      {/* 8 - Controls (bottom-right) */}
-      {false && <div className={styles.controls}>
-        <button className={styles.ctrlBtn} onClick={togglePlay} aria-label={playing ? 'Pause' : 'Play'}>
+      {/* 8 - Controls (bottom-right) - LIQUID GLASS DESIGN */}
+      <div className={styles.controls}>
+        <button className={styles.ctrlBtn} onClick={togglePlay} aria-label={playing ? 'Pause' : 'Play'} title={playing ? 'Pause' : 'Play'}>
           {playing
             ? /* Pause icon */
               <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
@@ -191,7 +191,7 @@ export default function VideoIntro() {
           }
         </button>
 
-        <button className={styles.ctrlBtn} onClick={toggleMute} aria-label={muted ? 'Unmute' : 'Mute'}>
+        <button className={styles.ctrlBtn} onClick={toggleMute} aria-label={muted ? 'Unmute' : 'Mute'} title={muted ? 'Unmute' : 'Mute'}>
           {muted
             ? /* Muted icon */
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
@@ -207,7 +207,7 @@ export default function VideoIntro() {
               </svg>
           }
         </button>
-      </div>}
+      </div>
 
       {/* 9 - Scroll cue */}
       <button

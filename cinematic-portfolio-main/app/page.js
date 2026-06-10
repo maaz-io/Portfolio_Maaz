@@ -23,16 +23,15 @@ export default function Home() {
   const busyRef        = useRef(false)
   const tweenRef       = useRef(null)
   const loopOverlayRef = useRef(null)
-  const cinematicRef   = useRef(null) // Cinematic mode interval
+  const cinematicRef   = useRef(null)
+  const cinematicActiveRef = useRef(false) // Track cinematic state in ref
   const [showLoader, setShowLoader] = useState(true)
-  const [isCinematic, setIsCinematic] = useState(false) // Cinematic mode state
+  const [isCinematic, setIsCinematic] = useState(false)
 
   useEffect(() => {
     const el = mainRef.current
     if (!el) return
 
-    // Fade to black → instant scrollTop jump → fade in
-    // Used whenever we loop footer → first section
     function fadeLoop(targetScrollTop, targetIdx) {
       busyRef.current = true
       tweenRef.current?.kill()
@@ -57,7 +56,6 @@ export default function Home() {
     }
 
     function goTo(idx) {
-      // Clamp to valid range - don't wrap around
       if (idx >= TOTAL) idx = TOTAL - 1
       if (idx < 0)      idx = 0
 
@@ -74,56 +72,47 @@ export default function Home() {
       })
     }
 
-    // Cinematic view auto-scroll every 5 seconds
     function startCinematicMode() {
+      cinematicActiveRef.current = true
       setIsCinematic(true)
-      busyRef.current = true
       
-      cinematicRef.current = setInterval(() => {
+      function scrollNextInCinematic() {
+        if (!cinematicActiveRef.current) return
+        
         const nextIdx = idxRef.current + 1
         
-        // If we've reached the last section, wait 5 seconds and go back to home
         if (nextIdx >= TOTAL) {
+          // Loop back to start
           clearInterval(cinematicRef.current)
           setTimeout(() => {
-            if (isCinematic) {
+            if (cinematicActiveRef.current) {
               busyRef.current = true
               fadeLoop(0, 0)
-              // Restart cinematic mode after returning to home
               setTimeout(() => {
-                if (isCinematic) {
-                  busyRef.current = false
-                  cinematicRef.current = setInterval(() => {
-                    const idx = idxRef.current + 1
-                    if (idx >= TOTAL) {
-                      clearInterval(cinematicRef.current)
-                      return
-                    }
-                    goTo(idx)
-                  }, 5000)
-                }
-              }, 600)
+                cinematicRef.current = setInterval(scrollNextInCinematic, 5000)
+              }, 2000)
             }
           }, 5000)
           return
         }
         
         goTo(nextIdx)
-      }, 5000)
+      }
+      
+      cinematicRef.current = setInterval(scrollNextInCinematic, 5000)
     }
 
     function stopCinematicMode() {
+      cinematicActiveRef.current = false
       setIsCinematic(false)
       if (cinematicRef.current) {
         clearInterval(cinematicRef.current)
         cinematicRef.current = null
       }
-      busyRef.current = false
     }
 
-    // Listen for cinematic view toggle from Navbar
     function handleCinematicToggle() {
-      if (isCinematic) {
+      if (cinematicActiveRef.current) {
         stopCinematicMode()
       } else {
         startCinematicMode()
@@ -134,7 +123,7 @@ export default function Home() {
 
     function onWheel(e) {
       e.preventDefault()
-      if (busyRef.current || isCinematic) return
+      if (busyRef.current || cinematicActiveRef.current) return
       goTo(idxRef.current + (e.deltaY > 0 ? 1 : -1))
     }
 
@@ -142,7 +131,7 @@ export default function Home() {
     function onTouchStart(e) { touchY = e.touches[0].clientY }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || busyRef.current || isCinematic) return
+      if (Math.abs(dy) < 40 || busyRef.current || cinematicActiveRef.current) return
       goTo(idxRef.current + (dy > 0 ? 1 : -1))
     }
 
@@ -159,8 +148,7 @@ export default function Home() {
     function onMobileTouchStart(e) { mTouchY = e.touches[0].clientY }
     function onMobileTouchEnd(e) {
       const dy = mTouchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || isCinematic) return
-      // Don't loop - just clamp to boundaries
+      if (Math.abs(dy) < 40 || cinematicActiveRef.current) return
       if (dy > 0) goTo(idxRef.current + 1)
       if (dy < 0) goTo(idxRef.current - 1)
     }
@@ -189,7 +177,7 @@ export default function Home() {
       }
       tweenRef.current?.kill()
     }
-  }, [isCinematic])
+  }, [])
 
   return (
     <>
@@ -197,7 +185,6 @@ export default function Home() {
         <ScreenLoader onDismiss={() => setShowLoader(false)} />
       )}
 
-      {/* Full-screen fade overlay for seamless footer → top loop */}
       <div
         ref={loopOverlayRef}
         style={{
