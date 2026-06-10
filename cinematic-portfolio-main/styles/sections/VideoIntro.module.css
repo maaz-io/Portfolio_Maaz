@@ -148,7 +148,7 @@
 .controls {
   position: absolute;
   bottom: 2rem;
-  right: 2rem;
+  left: 2rem;
   z-index: 6;
   display: flex;
   align-items: center;
@@ -225,7 +225,7 @@
 @media (max-width: 767px) {
   .heroContent { padding: 0 1.5rem; }
   .name        { font-size: clamp(2.8rem, 11vw, 5rem); }
-  .controls    { bottom: 1.5rem; right: 1rem; }
+  .controls    { bottom: 1.5rem; left: 1rem; }
   .scrollCue   { bottom: 1.5rem; }
   .soundHint   { bottom: 4.5rem; right: 1rem; }
   .bgVideo     { display: none; }
