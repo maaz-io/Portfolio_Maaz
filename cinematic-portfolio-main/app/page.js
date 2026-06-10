@@ -23,7 +23,9 @@ export default function Home() {
   const busyRef        = useRef(false)
   const tweenRef       = useRef(null)
   const loopOverlayRef = useRef(null)
+  const cinematicRef   = useRef(null) // Cinematic mode interval
   const [showLoader, setShowLoader] = useState(true)
+  const [isCinematic, setIsCinematic] = useState(false) // Cinematic mode state
 
   useEffect(() => {
     const el = mainRef.current
@@ -72,9 +74,67 @@ export default function Home() {
       })
     }
 
+    // Cinematic view auto-scroll every 5 seconds
+    function startCinematicMode() {
+      setIsCinematic(true)
+      busyRef.current = true
+      
+      cinematicRef.current = setInterval(() => {
+        const nextIdx = idxRef.current + 1
+        
+        // If we've reached the last section, wait 5 seconds and go back to home
+        if (nextIdx >= TOTAL) {
+          clearInterval(cinematicRef.current)
+          setTimeout(() => {
+            if (isCinematic) {
+              busyRef.current = true
+              fadeLoop(0, 0)
+              // Restart cinematic mode after returning to home
+              setTimeout(() => {
+                if (isCinematic) {
+                  busyRef.current = false
+                  cinematicRef.current = setInterval(() => {
+                    const idx = idxRef.current + 1
+                    if (idx >= TOTAL) {
+                      clearInterval(cinematicRef.current)
+                      return
+                    }
+                    goTo(idx)
+                  }, 5000)
+                }
+              }, 600)
+            }
+          }, 5000)
+          return
+        }
+        
+        goTo(nextIdx)
+      }, 5000)
+    }
+
+    function stopCinematicMode() {
+      setIsCinematic(false)
+      if (cinematicRef.current) {
+        clearInterval(cinematicRef.current)
+        cinematicRef.current = null
+      }
+      busyRef.current = false
+    }
+
+    // Listen for cinematic view toggle from Navbar
+    function handleCinematicToggle() {
+      if (isCinematic) {
+        stopCinematicMode()
+      } else {
+        startCinematicMode()
+      }
+    }
+
+    window.addEventListener('toggleCinematicView', handleCinematicToggle)
+
     function onWheel(e) {
       e.preventDefault()
-      if (busyRef.current) return
+      if (busyRef.current || isCinematic) return
       goTo(idxRef.current + (e.deltaY > 0 ? 1 : -1))
     }
 
@@ -82,19 +142,13 @@ export default function Home() {
     function onTouchStart(e) { touchY = e.touches[0].clientY }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || busyRef.current) return
+      if (Math.abs(dy) < 40 || busyRef.current || isCinematic) return
       goTo(idxRef.current + (dy > 0 ? 1 : -1))
     }
 
     function onScroll() {
       idxRef.current = Math.round(el.scrollTop / window.innerHeight)
     }
-
-    // Footer video ends → disabled (no looping back to top)
-    // function onFooterLoop() {
-    //   if (busyRef.current) return
-    //   fadeLoop(0, 0)
-    // }
 
     const isMobile = window.matchMedia('(max-width: 767px)').matches
 
@@ -105,7 +159,7 @@ export default function Home() {
     function onMobileTouchStart(e) { mTouchY = e.touches[0].clientY }
     function onMobileTouchEnd(e) {
       const dy = mTouchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40) return
+      if (Math.abs(dy) < 40 || isCinematic) return
       // Don't loop - just clamp to boundaries
       if (dy > 0) goTo(idxRef.current + 1)
       if (dy < 0) goTo(idxRef.current - 1)
@@ -118,8 +172,6 @@ export default function Home() {
       el.addEventListener('touchstart', onMobileTouchStart, { passive: true })
       el.addEventListener('touchend',   onMobileTouchEnd,   { passive: true })
     }
-    // Disabled: no more looping back to top
-    // window.addEventListener('footer-loop-back', onFooterLoop)
 
     return () => {
       el.removeEventListener('wheel',  onWheel)
@@ -131,10 +183,13 @@ export default function Home() {
         el.removeEventListener('touchstart', onMobileTouchStart)
         el.removeEventListener('touchend',   onMobileTouchEnd)
       }
-      // window.removeEventListener('footer-loop-back', onFooterLoop)
+      window.removeEventListener('toggleCinematicView', handleCinematicToggle)
+      if (cinematicRef.current) {
+        clearInterval(cinematicRef.current)
+      }
       tweenRef.current?.kill()
     }
-  }, [])
+  }, [isCinematic])
 
   return (
     <>
@@ -155,7 +210,7 @@ export default function Home() {
         }}
       />
 
-      <Navbar />
+      <Navbar isCinematic={isCinematic} />
       <FloatingResumePill />
       <main ref={mainRef} style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
         <div>

@@ -32,7 +32,7 @@ function getPKT() {
   }).toUpperCase()
 }
 
-export default function Navbar() {
+export default function Navbar({ isCinematic = false }) {
   const [time,    setTime]    = useState('')   // '' on SSR - avoids hydration mismatch
   const [onIntro, setOnIntro] = useState(true)
   const [onDark,  setOnDark]  = useState(false)
@@ -89,6 +89,11 @@ export default function Navbar() {
     }
   }, [])
 
+  // Handle cinematic view toggle
+  const toggleCinematicView = () => {
+    window.dispatchEvent(new Event('toggleCinematicView'))
+  }
+
   return (
     <>
       <header ref={headerRef} className={`${styles.header} ${onIntro ? styles.introMode : ''} ${onDark ? styles.darkMode : ''}`}>
@@ -117,12 +122,21 @@ export default function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <a
-          href={`mailto:${profile.email}`}
-          className={`${styles.emailBtn} rounded-full text-xs font-semibold px-5 h-8`}
-        >
-          Email me
-        </a>
+        <div className={styles.navActions}>
+          <button
+            onClick={toggleCinematicView}
+            className={`${styles.cinematicBtn} ${isCinematic ? styles.cinematicActive : ''}`}
+            title={isCinematic ? 'Stop Cinematic View' : 'Start Cinematic View'}
+          >
+            {isCinematic ? '⏹ STOP' : '▶ CINEMATIC'}
+          </button>
+          <a
+            href={`mailto:${profile.email}`}
+            className={`${styles.emailBtn} rounded-full text-xs font-semibold px-5 h-8`}
+          >
+            Email me
+          </a>
+        </div>
 
         <button
           className={styles.hamburger}
@@ -152,6 +166,16 @@ export default function Navbar() {
               {label}
             </button>
           ))}
+          <button
+            onClick={() => {
+              toggleCinematicView()
+              setMenuOpen(false)
+            }}
+            className={styles.mobileNavLink}
+            style={{ marginTop: '0.5rem', fontSize: '1rem' }}
+          >
+            {isCinematic ? '⏹ STOP CINEMATIC' : '▶ CINEMATIC VIEW'}
+          </button>
           <a
             href={`mailto:${profile.email}`}
             className={styles.mobileMailLink}
